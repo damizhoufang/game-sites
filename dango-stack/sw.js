@@ -1,4 +1,5 @@
 // 离线缓存：有网时总是取最新的页面，断网时用上次存下的那份。
+// 同一域名下还有别的游戏，所以只清理以 dango-stack- 开头的旧缓存。
 const CACHE = 'dango-stack-1.1.0';
 const SHELL = ['./', 'index.html', 'manifest.json', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
 
@@ -9,7 +10,7 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
+      .then(keys => Promise.all(keys.filter(k => k.startsWith('dango-stack-') && k !== CACHE).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
