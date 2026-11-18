@@ -1,7 +1,19 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="小羊闯年关">
+<meta name="theme-color" content="#1a0705">
+<meta name="description" content="春节主题横版闯关小游戏，小羊阿咩顶福砖、踩年兽。">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
 <title>小羊闯年关</title>
-<style>:root{color-scheme:dark}
-
+<style>
 :root{--red:#b3201c;--gold:#f3c45a;--paper:#fbf1dc;--u:6px}
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;overflow:hidden}
@@ -31,8 +43,8 @@ h1{margin:0;font-size:calc(var(--u)*15);letter-spacing:calc(var(--u)*1.6);color:
 #msg .big{font-size:calc(var(--u)*11);color:#ffd866;font-weight:900;text-shadow:0 calc(var(--u)*.6) 0 #8e140f,0 0 calc(var(--u)*4) rgba(255,150,60,.5)}
 #msg .small{font-size:calc(var(--u)*4.2);color:#fbe3b5;line-height:1.7;white-space:pre-line}
 </style>
-
-
+</head>
+<body>
 <div id="wrap">
 <canvas id="c"></canvas>
 <div id="title" class="ov">
@@ -739,10 +751,41 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden&&G.mode==='
 setInterval(()=>{document.body.dataset.mode=G.mode;bM.classList.toggle('off',SND.muted)},150);
 // 主屏幕图标
 const[ic,ig]=mk(180,180);ig.fillStyle='#b3201c';ig.fillRect(0,0,180,180);ig.strokeStyle='#f3c45a';ig.lineWidth=8;ig.strokeRect(10,10,160,160);
-ig.drawImage(SPR.goat.n.s.stand,26,20,128,128);const ln=document.createElement('link');ln.rel='apple-touch-icon';ln.href=ic.toDataURL('image/png');document.head.appendChild(ln);
+ig.drawImage(SPR.goat.n.s.stand,26,20,128,128);window.__icon=ic;
+})();
+// ===== 离线网页 App：离线缓存、分享、添加到主屏幕提示 =====
+(()=>{
+const web=/^https?:$/.test(location.protocol);
+const standalone=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches;
+const st=document.createElement('style');st.textContent=`
+#bS{width:auto;padding:0 13px;border-radius:999px;font-size:14px;letter-spacing:2px}
+body.port #bS{left:calc(50% + 18px);top:calc(var(--padTop) + 58px)}body.port #bP{left:calc(50% - 86px)}body.port #bM{left:calc(50% - 32px)}
+body.land #bS{right:calc(env(safe-area-inset-right) + 10px);top:calc(env(safe-area-inset-top) + 102px);opacity:.8}
+#toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 24px);transform:translateX(-50%);z-index:20;max-width:min(88vw,420px);padding:10px 16px;border-radius:12px;
+ background:rgba(30,5,3,.92);border:1px solid #f3c45a;color:#ffe9b8;font-size:14px;line-height:1.6;text-align:center;pointer-events:none;opacity:0;transition:opacity .3s}
+#toast.show{opacity:1}#toast b{color:#ffd866}`;
+document.head.appendChild(st);
+const toast=document.createElement('div');toast.id='toast';document.body.appendChild(toast);let tt=0;
+function say(html,ms){toast.innerHTML=html;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),ms||3500)}
+// 分享按钮
+const pad=document.getElementById('pad'),b=document.createElement('div');b.id='bS';b.className='sbtn';b.textContent='分享';pad.appendChild(b);
+const url=location.href.split('#')[0].replace(/index\.html$/,'');
+b.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation()});
+b.addEventListener('click',async e=>{e.stopPropagation();
+ if(!web){say('这是本地文件，没有网址可分享。<br>请把游戏放到网站上再分享。');return}
+ const data={title:'小羊闯年关',text:'一起来玩春节小游戏《小羊闯年关》！用 Safari 打开，添加到主屏幕后断网也能玩：',url};
+ if(navigator.share){try{await navigator.share(data);return}catch(err){if(err&&err.name==='AbortError')return}}
+ try{await navigator.clipboard.writeText(data.text+url);say('链接已复制，发给朋友就行')}catch(_){say('把这个网址发给朋友：<br><b>'+url+'</b>',8000)}});
+if(!web)b.style.display='none';
+// 添加到主屏幕提示
+const hint=document.querySelector('.deco .hint');
+if(web&&!standalone){if(hint)hint.innerHTML+='<br>Safari 点「分享」→「添加到主屏幕」，断网也能玩';
+ setTimeout(()=>{if(G.mode==='title')say('小提示：在 Safari 点 <b>分享</b> → <b>添加到主屏幕</b><br>以后从桌面图标打开，断网也能玩',6000)},1500)}
+// 离线缓存
+if(web&&'serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').then(reg=>{
+ if(!navigator.serviceWorker.controller)navigator.serviceWorker.ready.then(()=>{if(!standalone)return;say('已可离线游玩',2500)});
+ reg.addEventListener('updatefound',()=>{const w=reg.installing;w&&w.addEventListener('statechange',()=>{if(w.state==='installed'&&navigator.serviceWorker.controller)say('游戏有新版本，下次打开时自动更新',4000)})})}).catch(()=>{})}
 })();
 </script>
-
-
-
-</body></html>
+</body>
+</html>
