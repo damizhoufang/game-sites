@@ -2,7 +2,10 @@
 
 春节主题的横版闯关小游戏。主角是穿红唐装的小羊阿咩，敌人是民间传说里的年兽。三关：腊月集市、除夕之夜、决战年兽。画面、音效和民乐配乐（笛子、琵琶、古筝、锣鼓）都由代码实时生成，没有图片和音频素材。
 
-在线地址：https://damizhoufang.github.io/game-sites/xiaoyang/
+在线地址：https://damizhoufang.github.io/game-sites/xiaoyang/ （打开后选择版本，会按设备推荐）
+
+- 电脑版：https://damizhoufang.github.io/game-sites/xiaoyang/pc/
+- 手机版：https://damizhoufang.github.io/game-sites/xiaoyang/mobile/
 
 ## 怎么玩
 
@@ -14,11 +17,11 @@
 | 扔鞭炮（拿到鞭炮后） | 「炮」 | Shift、J 或 X |
 | 暂停 / 静音 | 小圆钮 | P / M |
 
-也支持游戏手柄。竖屏时手柄在画面下方，横屏时按键半透明地浮在两侧。
+两个版本都支持游戏手柄。手机版竖屏时手柄在画面下方，横屏时按键半透明地浮在两侧。
 
 ## 在 iPhone 上离线玩
 
-1. 用 Safari 打开上面的地址
+1. 用 Safari 打开手机版地址
 2. 点分享按钮，选“添加到主屏幕”
 3. 从主屏幕上的小羊图标打开
 
@@ -28,6 +31,11 @@
 
 ## 文件
 
-- `index.html`：游戏本体（样式、程序、关卡、配乐都在里面）
-- `sw.js`：离线缓存。改了游戏文件后把里面的 `CACHE` 版本号加一
-- `manifest.webmanifest`、`icon-*.png`：添加到主屏幕用的名称和图标
+- `index.html`：选择版本的入口页
+- `pc/index.html`：电脑版（单个文件，下载下来双击也能玩）
+- `mobile/index.html`：手机版（触屏手柄、分享按钮）
+- `mobile/sw.js`：手机版离线缓存。改了手机版后把里面的 `CACHE` 版本号加一
+- `mobile/manifest.webmanifest`、`mobile/icon-*.png`：添加到主屏幕用的名称和图标
+- `sw.js`：手机版原来放在本目录，这个文件只负责清理旧地址留下的离线缓存，可以保留
+
+两个版本的游戏内容相同，改关卡、角色、配乐时两个文件都要改。
