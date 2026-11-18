@@ -4,9 +4,11 @@
 
 整个游戏就是一个网页，画面和音效都由代码生成，没有图片和音频素材。
 
+在线地址：https://damizhoufang.github.io/game-sites/dango-stack/
+
 ## 怎么玩
 
-用手机浏览器打开 `index.html` 所在的网址即可。棋盘铺满整个屏幕。
+用手机浏览器打开上面的地址即可。棋盘铺满整个屏幕。
 
 | 操作 | 手势（屏幕上任意位置） | 键盘 |
 | --- | --- | --- |
@@ -25,7 +27,7 @@
 
 iPhone 的 Safari 不允许网页自己进入全屏，要这样做：
 
-1. 用 Safari 打开游戏网址
+1. 用 Safari 打开 https://damizhoufang.github.io/game-sites/dango-stack/
 2. 点分享按钮，选“添加到主屏幕”
 3. 从主屏幕上的图标打开
 
