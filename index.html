@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>游戏合集</title>
+<meta name="description" content="网页小游戏合集，打开就能玩，手机电脑都可以。">
+<style>
+/*
+VOICE: 街机厅门口的招牌——热闹、直接，一眼看到能玩什么。
+IDEA: 一排游戏机台：每台一块发光的屏幕封面，下面是投币口一样的"开始玩"。
+PICTURE: 每个游戏一张用 CSS 画的封面，取自游戏自己的颜色与标志物。
+COLOUR and TYPE: 深墨底、暖白字；每台机子用自己游戏的主色；标题楷体，正文系统黑体。
+LAYOUT: 标题一行，下面机台网格，窄屏单列；页脚是反馈入口。
+*/
+:root{color-scheme:dark;--bg:#14110f;--ink:#f5efe4;--mute:#a59b8c;--line:#2c2723;--card:#1c1815}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif}
+a{color:inherit}
+header,main,footer{max-width:1100px;margin:0 auto;padding:0 max(4vw,16px)}
+header{padding-top:clamp(28px,6vw,64px);padding-bottom:20px}
+h1{margin:0;font:900 clamp(34px,6vw,52px)/1.05 "KaiTi","STKaiti","Kaiti SC","楷体",serif;letter-spacing:.06em}
+.lead{margin:10px 0 0;color:var(--mute);max-width:34em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:22px;padding:18px 0 40px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.cover{position:relative;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,4%,26px);overflow:hidden}
+.cover b{position:relative;font:900 clamp(30px,5vw,40px)/1 "KaiTi","STKaiti","Kaiti SC","楷体",serif;letter-spacing:.12em;text-align:center}
+.body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.body h2{margin:0;font:900 22px/1.3 "KaiTi","STKaiti","Kaiti SC","楷体",serif}
+.body p{margin:0;color:var(--mute);font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:13px;padding:1px 9px;border:1px solid var(--line);border-radius:99px;color:var(--mute)}
+.acts{display:flex;gap:10px;margin-top:auto;padding-top:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:10px;text-decoration:none;font-weight:600;border:1px solid var(--line)}
+.btn.go{flex:1;color:#1a0705;border:0}
+.btn:focus-visible{outline:3px solid #f3c45a;outline-offset:2px}
+footer{border-top:1px solid var(--line);padding-top:18px;padding-bottom:36px;color:var(--mute);font-size:14px}
+/* 小羊闯年关：红底金边、斜放的福字 */
+.c-xiaoyang{background:radial-gradient(ellipse at 50% 35%,#7a1d15 0%,#3a0d09 60%,#1a0504 100%)}
+.c-xiaoyang::before{content:"";position:absolute;inset:10px;border:2px solid #f3c45a;border-radius:6px;box-shadow:inset 0 0 0 5px #9b1b15,inset 0 0 0 7px #f3c45a}
+.c-xiaoyang .fu{position:relative;width:clamp(44px,14%,58px);aspect-ratio:1;rotate:45deg;background:linear-gradient(135deg,#dc2a22,#a3150f);border:3px solid #f3c45a;box-shadow:0 0 24px rgba(255,190,80,.45);display:grid;place-items:center;animation:sway 3.2s ease-in-out infinite}
+.c-xiaoyang .fu i{rotate:135deg;font:900 clamp(26px,4vw,34px)/1 "KaiTi","STKaiti","Kaiti SC","楷体",serif;font-style:normal;color:#ffd866}
+.c-xiaoyang b{color:#ffd866;text-shadow:0 3px 0 #8e140f,0 0 20px rgba(255,170,60,.6)}
+.g-xiaoyang .go{background:#f3c45a}
+@keyframes sway{50%{rotate:49deg}}
+@media (prefers-reduced-motion:reduce){.c-xiaoyang .fu{animation:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>游戏合集</h1>
+  <p class="lead">网页小游戏，点开就能玩，不用安装。手机、平板、电脑都可以。</p>
+</header>
+<main>
+  <div class="grid" id="grid">
+    <article class="game g-xiaoyang">
+      <div class="cover c-xiaoyang" aria-hidden="true"><span class="fu"><i>福</i></span><b>小羊闯年关</b></div>
+      <div class="body">
+        <h2>小羊闯年关</h2>
+        <p>春节主题横版闯关：小羊阿咩顶福砖、踩年兽、扔鞭炮，闯过腊月集市、除夕之夜，最后决战年兽。配乐是实时合成的民乐。</p>
+        <div class="tags"><span>横版闯关 · 三关</span><span>键盘 ← → 空格</span><span>触屏手柄</span><span>支持游戏手柄</span></div>
+        <div class="acts"><a class="btn go" href="xiaoyang/">开始玩</a><a class="btn" href="https://github.com/damizhoufang/game-sites/issues/new/choose">反馈</a></div>
+      </div>
+    </article>
+  </div>
+</main>
+<footer>
+  <p>玩的时候遇到问题或有建议，请到 <a href="https://github.com/damizhoufang/game-sites/issues/new/choose">GitHub Issues</a> 按模板「游戏缺陷反馈」或「试玩体验建议」提交。</p>
+</footer>
+</body>
+</html>
