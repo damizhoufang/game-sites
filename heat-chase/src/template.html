@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="description" content="热力追逐：第一人称三轨道跑酷，涂鸦企鹅大逃亡。完全离线可玩。">
+<meta name="theme-color" content="#120a22">
+{{HEAD}}
+<style>
+{{CSS}}
+</style>
+</head>
+<body class="plat-{{PLAT}}">
+<div id="frame">
+  <div id="stage">
+    <canvas id="gl"></canvas>
+    <div id="vig"></div>
+    <div id="hud" class="hidden"></div>
+    <div id="pops"></div>
+    <div id="hint" class="hidden"></div>
+    <div id="bubble" class="hidden"></div>
+    <div id="screens"></div>
+  </div>
+</div>
+<div id="rotate">请把手机竖过来玩<br>热力追逐 · 手机版为竖屏设计</div>
+<noscript>这个游戏需要开启 JavaScript 才能运行。</noscript>
+<script>
+/* 热力追逐 {{PLAT_LABEL}} —— 由 src/ 目录下的源码通过 build.js 合并生成，请勿直接修改本文件 */
+(function () {
+'use strict';
+{{JS}}
+})();
+</script>
+</body>
+</html>

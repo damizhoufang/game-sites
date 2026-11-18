@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>热力追逐 · 选择版本</title>
+<meta name="theme-color" content="#120a22">
+<link rel="icon" href="icon-192.png">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;color:#fff;background:radial-gradient(circle at 50% 0,#3a1d6e,#120a22 62%) fixed;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:40px 20px}
+header{text-align:center;transform:rotate(-3deg)}
+.sub{font:italic 900 15px/1 "Arial Black",Impact,sans-serif;letter-spacing:.42em;color:#5ef2ff;text-shadow:0 0 12px rgba(94,242,255,.7);margin-bottom:8px}
+h1{font:italic 900 clamp(52px,13vw,104px)/1.05 "Arial Black",Impact,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#fffbe0 6%,#ffe14a 36%,#ff7a1f 68%,#ff2e63);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:2px #fff;filter:drop-shadow(4px 6px 0 #5a0d3a) drop-shadow(0 0 22px rgba(255,90,31,.55));white-space:nowrap}
+p.tag{margin-top:14px;color:#ffd9c2;font-weight:800;letter-spacing:.12em}
+main{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;width:100%;max-width:760px}
+a.card{flex:1 1 280px;display:block;text-decoration:none;color:#fff;padding:24px;border-radius:22px;background:linear-gradient(160deg,#2d1857,#160b2c);box-shadow:0 0 0 2px rgba(255,255,255,.13) inset,0 18px 44px rgba(0,0,0,.5);transition:transform .15s,box-shadow .15s}
+a.card:hover,a.card:focus-visible{transform:translateY(-4px);box-shadow:0 0 0 2px #ffe14a inset,0 22px 50px rgba(255,90,31,.35);outline:none}
+a.card.rec{box-shadow:0 0 0 2px #baff5a inset,0 18px 44px rgba(0,0,0,.5)}
+.card h2{font:italic 900 30px/1.1 "Arial Black",Impact,"PingFang SC","Microsoft YaHei",sans-serif;color:#ffe14a;display:flex;align-items:center;gap:10px}
+.card h2 em{font:800 12px/1 inherit;font-style:normal;color:#0d2a12;background:#baff5a;padding:5px 9px;border-radius:10px;display:none}
+.card.rec h2 em{display:inline-block}
+.card ul{list-style:none;margin:14px 0 18px;color:#d9d0f2;font-size:14.5px;line-height:1.9}
+.card ul li::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff7a1f;margin-right:9px;vertical-align:middle}
+.go{display:block;text-align:center;font:italic 900 19px/1 inherit;color:#2a0d00;padding:14px;border-radius:15px;background:linear-gradient(180deg,#fff06a,#ffb52e 45%,#ff5a1f);box-shadow:0 5px 0 #a8201c}
+footer{color:#b9aed6;font-size:13px;text-align:center;line-height:1.8;max-width:620px}
+</style>
+</head>
+<body>
+<header>
+  <div class="sub">HEAT CHASE</div>
+  <h1>热力追逐</h1>
+  <p class="tag">涂鸦企鹅 · 三轨狂奔 · 第一人称跑酷</p>
+</header>
+<main>
+  <a class="card" id="c-pc" href="pc/index.html">
+    <h2>PC 版 <em>推荐你的设备</em></h2>
+    <ul><li>键盘操作：方向键 / WASD</li><li>横屏宽画面，更远的视野</li><li>Shift 或双击鼠标放出滑板</li></ul>
+    <span class="go">进入 PC 版</span>
+  </a>
+  <a class="card" id="c-m" href="mobile/index.html">
+    <h2>手机版 <em>推荐你的设备</em></h2>
+    <ul><li>滑动屏幕：上跳、下滚、左右换道</li><li>竖屏单手操作，双击放出滑板</li><li>可添加到主屏幕，断网也能玩</li></ul>
+    <span class="go">进入手机版</span>
+  </a>
+</main>
+<footer>两个版本都是单个网页文件，不联网也能运行，进度保存在本机。</footer>
+<script>
+(function () {
+  var touch = ('ontouchstart' in window || navigator.maxTouchPoints > 0) && Math.min(screen.width, screen.height) < 820;
+  document.getElementById(touch ? 'c-m' : 'c-pc').className += ' rec';
+})();
+</script>
+</body>
+</html>
